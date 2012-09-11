@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diseases>
+	<Disease>
+		<diseaseIdentifier>1</diseaseIdentifier>
+		<versionId>1</versionId>
+		<name>Anthrax</name>
+		<nameDk>Anthrax</nameDk>
+		<atcCode>J07AC</atcCode>
+		<atcText>Anthrax vacciner</atcText>
+		<modifiedDate>2012-09-04T12:37:55.000</modifiedDate>
+		<validFrom>2002-09-01T00:00:00.000</validFrom>
+		<validTo>2999-12-31T00:00:00.000</validTo>
+	</Disease>
+	<Disease>
+		<diseaseIdentifier>2</diseaseIdentifier>
+		<versionId>1</versionId>
+		<name>Brucellose</name>
+		<nameDk>Brucellose</nameDk>
+		<atcCode>J07AD</atcCode>
+		<atcText>Brucellose vacciner</atcText>
+		<modifiedDate>2012-09-04T12:37:55.000</modifiedDate>
+		<validFrom>2002-09-01T00:00:00.000</validFrom>
+		<validTo>2999-12-31T00:00:00.000</validTo>
+	</Disease>
+	<Disease>
+		<diseaseIdentifier>3</diseaseIdentifier>
+		<versionId>1</versionId>
+		<name>Cholera</name>
+		<nameDk>Kolera</nameDk>
+		<atcCode>J07AE</atcCode>
+		<atcText>Cholera vacciner</atcText>
+		<modifiedDate>2012-09-04T12:37:55.000</modifiedDate>
+		<validFrom>2002-09-01T00:00:00.000</validFrom>
+		<validTo>2999-12-31T00:00:00.000</validTo>
+	</Disease>
+	<Disease>
+		<diseaseIdentifier>4</diseaseIdentifier>
+		<versionId>1</versionId>
+		<name>Difteri</name>
+		<nameDk>Difteri</nameDk>
+		<atcCode>J07AF</atcCode>
+		<atcText>Difteri vacciner</atcText>
+		<modifiedDate>2012-09-04T12:37:55.000</modifiedDate>
+		<validFrom>2002-09-01T00:00:00.000</validFrom>
+		<validTo>2999-12-31T00:00:00.000</validTo>
+	</Disease>
+	<Disease>
+		<diseaseIdentifier>5</diseaseIdentifier>
+		<versionId>1</versionId>
+		<name>Hemophilus influenzae b</name>
+		<nameDk>Hemophilus influenzae b (Hib)</nameDk>
+		<atcCode>J07AG</atcCode>
+		<atcText>Hemophilus influenzae b vacciner</atcText>
+		<modifiedDate>2012-09-04T12:37:55.000</modifiedDate>
+		<validFrom>2002-09-01T00:00:00.000</validFrom>
+		<validTo>2999-12-31T00:00:00.000</validTo>
+	</Disease>
+	<Disease>
+		<diseaseIdentifier>6</diseaseIdentifier>
+		<versionId>1</versionId>
+		<name>Meningokok</name>
+		<nameDk>Meningokoksygdom</nameDk>
+		<atcCode>J07AH</atcCode>
+		<atcText>Meningokok vacciner</atcText>
+		<modifiedDate>2012-09-04T12:37:55.000</modifiedDate>
+		<validFrom>2002-09-01T00:00:00.000</validFrom>
+		<validTo>2999-12-31T00:00:00.000</validTo>
+	</Disease>
+	<Disease>
+		<diseaseIdentifier>7</diseaseIdentifier>
+		<versionId>1</versionId>
+		<name>Pertussis</name>
+		<nameDk>Kighoste</nameDk>
+		<atcCode>J07AJ</atcCode>
+		<atcText>Pertussis vacciner</atcText>
+		<modifiedDate>2012-09-04T12:37:55.000</modifiedDate>
+		<validFrom>2002-09-01T00:00:00.000</validFrom>
+		<validTo>2999-12-31T00:00:00.000</validTo>
+	</Disease>
+	<Disease>
+		<diseaseIdentifier>8</diseaseIdentifier>
+		<versionId>1</versionId>
+		<name>Plague</name>
+		<nameDk>Pest</nameDk>
+		<atcCode>J07AK</atcCode>
+		<atcText>Pest vacciner</atcText>
+		<modifiedDate>2012-09-04T12:37:55.000</modifiedDate>
+		<validFrom>2002-09-01T00:00:00.000</validFrom>
+		<validTo>2999-12-31T00:00:00.000</validTo>
+	</Disease>
+	<Disease>
+		<diseaseIdentifier>9</diseaseIdentifier>
+		<versionId>1</versionId>
+		<name>Pneumokok</name>
+		<nameDk>Pneumokoksygdom</nameDk>
+		<atcCode>J07AL</atcCode>
+		<atcText>Pneumokok vacciner</atcText>
+		<modifiedDate>2012-09-04T12:37:55.000</modifiedDate>
+		<validFrom>2002-09-01T00:00:00.000</validFrom>
+		<validTo>2999-12-31T00:00:00.000</validTo>
+	</Disease>
+	<Disease>
+		<diseaseIdentifier>10</diseaseIdentifier>
+		<versionId>1</versionId>
+		<name>Tetanus</name>
+		<nameDk>Stivkrampe</nameDk>
+		<atcCode>J07AM</atcCode>
+		<atcText>Tetanus vacciner</atcText>
+		<modifiedDate>2012-09-04T12:37:55.000</modifiedDate>
+		<validFrom>2002-09-01T00:00:00.000</validFrom>
+		<validTo>2999-12-31T00:00:00.000</validTo>
+	</Disease>
+	<Disease>
+		<diseaseIdentifier>11</diseaseIdentifier>
+		<versionId>1</versionId>
+		<name>Tuberculose</name>
+		<nameDk>Tuberkulose</nameDk>
+		<atcCode>J07AN</atcCode>
+		<atcText>Tuberculose vacciner</atcText>
+		<modifiedDate>2012-09-04T12:37:56.000</modifiedDate>
+		<validFrom>2002-09-01T00:00:00.000</validFrom>
+		<validTo>2999-12-31T00:00:00.000</validTo>
+	</Disease>
+	<Disease>
+		<diseaseIdentifier>12</diseaseIdentifier>
+		<versionId>1</versionId>
+		<name>Tyfus</name>
+		<nameDk>Tyfus</nameDk>
+		<atcCode>J07AP</atcCode>
+		<atcText>Tyfus vacciner</atcText>
+		<modifiedDate>2012-09-04T12:37:56.000</modifiedDate>
+		<validFrom>2002-09-01T00:00:00.000</validFrom>
+		<validTo>2999-12-31T00:00:00.000</validTo>
+	</Disease>
+	<Disease>
+		<diseaseIdentifier>13</diseaseIdentifier>
+		<versionId>1</versionId>
+		<name>Typhus exanthematicus</name>
+		<nameDk>Plettyfus</nameDk>
+		<atcCode>J07AR</atcCode>
+		<atcText>Typhus exanthematicus vacciner</atcText>
+		<modifiedDate>2012-09-04T12:37:56.000</modifiedDate>
+		<validFrom>2002-09-01T00:00:00.000</validFrom>
+		<validTo>2999-12-31T00:00:00.000</validTo>
+	</Disease>
+	<Disease>
+		<diseaseIdentifier>15</diseaseIdentifier>
+		<versionId>1</versionId>
+		<name>Encephalitis</name>
+		<nameDk>Hjernebetændelse</nameDk>
+		<atcCode>J07BA</atcCode>
+		<atcText>Encephalitis vacciner</atcText>
+		<modifiedDate>2012-09-04T12:37:56.000</modifiedDate>
+		<validFrom>2002-09-01T00:00:00.000</validFrom>
+		<validTo>2999-12-31T00:00:00.000</validTo>
+	</Disease>
+	<Disease>
+		<diseaseIdentifier>16</diseaseIdentifier>
+		<versionId>1</versionId>
+		<name>Influenza</name>
+		<nameDk>Influenza</nameDk>
+		<atcCode>J07BB</atcCode>
+		<atcText>Influenza vacciner</atcText>
+		<modifiedDate>2012-09-04T12:37:56.000</modifiedDate>
+		<validFrom>2002-09-01T00:00:00.000</validFrom>
+		<validTo>2999-12-31T00:00:00.000</validTo>
+	</Disease>
+	<Disease>
+		<diseaseIdentifier>17</diseaseIdentifier>
+		<versionId>1</versionId>
+		<name>Hepatitis</name>
+		<nameDk>Leverbetændelse</nameDk>
+		<atcCode>J07BC</atcCode>
+		<atcText>Hepatitis vacciner</atcText>
+		<modifiedDate>2012-09-04T12:37:56.000</modifiedDate>
+		<validFrom>2002-09-01T00:00:00.000</validFrom>
+		<validTo>2999-12-31T00:00:00.000</validTo>
+	</Disease>
+	<Disease>
+		<diseaseIdentifier>18</diseaseIdentifier>
+		<versionId>1</versionId>
+		<name>Morbilli</name>
+		<nameDk>Mæslinger</nameDk>
+		<atcCode>J07BD</atcCode>
+		<atcText>Mæslingevacciner</atcText>
+		<modifiedDate>2012-09-04T12:37:56.000</modifiedDate>
+		<validFrom>2002-09-01T00:00:00.000</validFrom>
+		<validTo>2999-12-31T00:00:00.000</validTo>
+	</Disease>
+	<Disease>
+		<diseaseIdentifier>19</diseaseIdentifier>
+		<versionId>1</versionId>
+		<name>Parotitis epidemica</name>
+		<nameDk>Fåresyge</nameDk>
+		<atcCode>J07BE</atcCode>
+		<atcText>Fåresygevacciner</atcText>
+		<modifiedDate>2012-09-04T12:37:56.000</modifiedDate>
+		<validFrom>2002-09-01T00:00:00.000</validFrom>
+		<validTo>2999-12-31T00:00:00.000</validTo>
+	</Disease>
+	<Disease>
+		<diseaseIdentifier>20</diseaseIdentifier>
+		<versionId>1</versionId>
+		<name>Poliomyelitis</name>
+		<nameDk>Børnelammelse</nameDk>
+		<atcCode>J07BF</atcCode>
+		<atcText>Poliomyelitis vacciner</atcText>
+		<modifiedDate>2012-09-04T12:37:56.000</modifiedDate>
+		<validFrom>2002-09-01T00:00:00.000</validFrom>
+		<validTo>2999-12-31T00:00:00.000</validTo>
+	</Disease>
+	<Disease>
+		<diseaseIdentifier>21</diseaseIdentifier>
+		<versionId>1</versionId>
+		<name>Rabies</name>
+		<nameDk>Hundegalskab</nameDk>
+		<atcCode>J07BG</atcCode>
+		<atcText>Rabies vacciner</atcText>
+		<modifiedDate>2012-09-04T12:37:56.000</modifiedDate>
+		<validFrom>2002-09-01T00:00:00.000</validFrom>
+		<validTo>2999-12-31T00:00:00.000</validTo>
+	</Disease>
+	<Disease>
+		<diseaseIdentifier>22</diseaseIdentifier>
+		<versionId>1</versionId>
+		<name>Rota virus diarrhea</name>
+		<nameDk>Rotavirus diarré</nameDk>
+		<atcCode>J07BH</atcCode>
+		<atcText>Rota virus diarrhea vacciner</atcText>
+		<modifiedDate>2012-09-04T12:37:56.000</modifiedDate>
+		<validFrom>2002-09-01T00:00:00.000</validFrom>
+		<validTo>2999-12-31T00:00:00.000</validTo>
+	</Disease>
+	<Disease>
+		<diseaseIdentifier>23</diseaseIdentifier>
+		<versionId>1</versionId>
+		<name>Rubella</name>
+		<nameDk>Røde hunde</nameDk>
+		<atcCode>J07BJ</atcCode>
+		<atcText>Rubella vacciner</atcText>
+		<modifiedDate>2012-09-04T12:37:56.000</modifiedDate>
+		<validFrom>2002-09-01T00:00:00.000</validFrom>
+		<validTo>2999-12-31T00:00:00.000</validTo>
+	</Disease>
+	<Disease>
+		<diseaseIdentifier>24</diseaseIdentifier>
+		<versionId>1</versionId>
+		<name>Varicella</name>
+		<nameDk>Skoldkopper</nameDk>
+		<atcCode>J07BK</atcCode>
+		<atcText>Varicella zoster vacciner</atcText>
+		<modifiedDate>2012-09-04T12:37:56.000</modifiedDate>
+		<validFrom>2002-09-01T00:00:00.000</validFrom>
+		<validTo>2999-12-31T00:00:00.000</validTo>
+	</Disease>
+	<Disease>
+		<diseaseIdentifier>25</diseaseIdentifier>
+		<versionId>1</versionId>
+		<name>Yellow fever</name>
+		<nameDk>Gul feber</nameDk>
+		<atcCode>J07BL</atcCode>
+		<atcText>Gul feber vacciner</atcText>
+		<modifiedDate>2012-09-04T12:37:56.000</modifiedDate>
+		<validFrom>2002-09-01T00:00:00.000</validFrom>
+		<validTo>2999-12-31T00:00:00.000</validTo>
+	</Disease>
+	<Disease>
+		<diseaseIdentifier>26</diseaseIdentifier>
+		<versionId>1</versionId>
+		<name>Papillomavirus</name>
+		<nameDk>Papillomavirus</nameDk>
+		<atcCode>J07BM</atcCode>
+		<atcText>Papillomavirus-vacciner</atcText>
+		<modifiedDate>2012-09-04T12:37:56.000</modifiedDate>
+		<validFrom>2002-09-01T00:00:00.000</validFrom>
+		<validTo>2999-12-31T00:00:00.000</validTo>
+	</Disease>
+</Diseases>
