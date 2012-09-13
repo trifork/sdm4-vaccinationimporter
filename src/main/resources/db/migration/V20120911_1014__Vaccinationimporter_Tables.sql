@@ -1,4 +1,4 @@
-CREATE TABLE diseases (
+CREATE TABLE ddv_diseases (
     DiseaseIdentifier BIGINT(15) AUTO_INCREMENT NOT NULL PRIMARY KEY,
     versionID BIGINT(12),
     name VARCHAR(100),
@@ -18,7 +18,7 @@ CREATE TABLE diseases (
 ) ENGINE=InnoDB COLLATE=utf8_bin;
 
 
-CREATE TABLE diseases_vaccines (
+CREATE TABLE ddv_diseases_vaccines (
     VaccineIdentifier BIGINT(15) AUTO_INCREMENT NOT NULL PRIMARY KEY,
     VaccineVersion BIGINT(12),
     DiseaseIdentifier BIGINT(15),
@@ -35,7 +35,7 @@ CREATE TABLE diseases_vaccines (
     INDEX (VaccineIdentifier, ValidTo, ValidFrom)
 ) ENGINE=InnoDB COLLATE=utf8_bin;
 
-CREATE TABLE dosageoptions (
+CREATE TABLE ddv_dosageoptions (
     DosageoptionIdentifier BIGINT(15) AUTO_INCREMENT NOT NULL PRIMARY KEY,
     VersionID BIGINT(12),
     DrugIdentifier BIGINT(12),
@@ -53,7 +53,7 @@ CREATE TABLE dosageoptions (
     INDEX (DosageoptionIdentifier, ValidTo, ValidFrom)
 ) ENGINE=InnoDB COLLATE=utf8_bin;
 
-CREATE TABLE services (
+CREATE TABLE ddv_services (
     ServiceIdentifier BIGINT(15) AUTO_INCREMENT NOT NULL PRIMARY KEY,
     VersionID BIGINT(12),
     Number VARCHAR(4),
@@ -76,7 +76,7 @@ CREATE TABLE services (
     INDEX (ServiceIdentifier, ValidTo, ValidFrom)
 ) ENGINE=InnoDB COLLATE=utf8_bin;
 
-CREATE TABLE ssidrugs (
+CREATE TABLE ddv_ssidrugs (
     DrugIdentifier BIGINT(15) AUTO_INCREMENT NOT NULL PRIMARY KEY,
     VersionID BIGINT(12),
     Name VARCHAR(30),
@@ -99,7 +99,7 @@ CREATE TABLE ssidrugs (
 ) ENGINE=InnoDB COLLATE=utf8_bin;
 
 
-CREATE TABLE ssidrugs_lmsdrugs (
+CREATE TABLE ddv_ssidrugs_lmsdrugs (
     SSIDrugIdentifier BIGINT(15) AUTO_INCREMENT NOT NULL PRIMARY KEY,
     LMSDrugID BIGINT(12),
     SSIDrugVersion INT(1),
@@ -115,7 +115,7 @@ CREATE TABLE ssidrugs_lmsdrugs (
     INDEX (SSIDrugIdentifier, ValidTo, ValidFrom)
 ) ENGINE=InnoDB COLLATE=utf8_bin;
 
-CREATE TABLE vaccinationplanitems (
+CREATE TABLE ddv_vaccinationplanitems (
     VaccinationPlanItemIdentifier BIGINT(15) AUTO_INCREMENT NOT NULL PRIMARY KEY,
     VersionID BIGINT(10),
     VaccineIdentifier BIGINT(15),
@@ -140,7 +140,7 @@ CREATE TABLE vaccinationplanitems (
     INDEX (VaccinationPlanItemIdentifier, ValidTo, ValidFrom)
 ) ENGINE=InnoDB COLLATE=utf8_bin;
 
-CREATE TABLE vaccinationplans (
+CREATE TABLE ddv_vaccinationplans (
     VaccinationPlanIdentifier BIGINT(15) AUTO_INCREMENT NOT NULL PRIMARY KEY,
     VersionID BIGINT(10),
     Active INT(1),
@@ -165,7 +165,7 @@ CREATE TABLE vaccinationplans (
     INDEX (VaccinationPlanIdentifier, ValidTo, ValidFrom)
 ) ENGINE=InnoDB COLLATE=utf8_bin;
 
-CREATE TABLE vaccines (
+CREATE TABLE ddv_vaccines (
     VaccineIdentifier BIGINT(15) AUTO_INCREMENT NOT NULL PRIMARY KEY,
     VersionID BIGINT(12),
     ATCCode VARCHAR(8),
@@ -187,7 +187,7 @@ CREATE TABLE vaccines (
     INDEX (VaccineIdentifier, ValidTo, ValidFrom)
 ) ENGINE=InnoDB COLLATE=utf8_bin;
 
-CREATE TABLE vaccinesdrugs (
+CREATE TABLE ddv_vaccinesdrugs (
     VaccineIdentifier BIGINT(15) AUTO_INCREMENT NOT NULL PRIMARY KEY,
     VersionID BIGINT(12),
     DrugIdentifier BIGINT(12),
