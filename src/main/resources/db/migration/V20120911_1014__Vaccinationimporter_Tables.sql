@@ -1,5 +1,6 @@
 CREATE TABLE ddv_diseases (
-    DiseaseIdentifier BIGINT(15) AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    PID BIGINT(15) AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    DiseaseIdentifier BIGINT(15),
     versionID BIGINT(12),
     name VARCHAR(100),
     name_dk VARCHAR(100),
@@ -19,7 +20,8 @@ CREATE TABLE ddv_diseases (
 
 
 CREATE TABLE ddv_diseases_vaccines (
-    VaccineIdentifier BIGINT(15) AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    PID BIGINT(15) AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    VaccineIdentifier BIGINT(15),
     VaccineVersion BIGINT(12),
     DiseaseIdentifier BIGINT(15),
     DiseaseVersion BIGINT(12),
@@ -32,11 +34,12 @@ CREATE TABLE ddv_diseases_vaccines (
     ValidFrom DATETIME NOT NULL,
     ValidTo DATETIME,
 
-    INDEX (VaccineIdentifier, ValidTo, ValidFrom)
+    INDEX (VaccineIdentifier, DiseaseIdentifier, ValidTo, ValidFrom)
 ) ENGINE=InnoDB COLLATE=utf8_bin;
 
 CREATE TABLE ddv_dosageoptions (
-    DosageoptionIdentifier BIGINT(15) AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    PID BIGINT(15) AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    DosageoptionIdentifier BIGINT(15),
     VersionID BIGINT(12),
     DrugIdentifier BIGINT(12),
     DrugName VARCHAR(30),
@@ -54,7 +57,8 @@ CREATE TABLE ddv_dosageoptions (
 ) ENGINE=InnoDB COLLATE=utf8_bin;
 
 CREATE TABLE ddv_services (
-    ServiceIdentifier BIGINT(15) AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    PID BIGINT(15) AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    ServiceIdentifier BIGINT(15),
     VersionID BIGINT(12),
     Number VARCHAR(4),
     Description VARCHAR(40),
@@ -77,7 +81,8 @@ CREATE TABLE ddv_services (
 ) ENGINE=InnoDB COLLATE=utf8_bin;
 
 CREATE TABLE ddv_ssidrugs (
-    DrugIdentifier BIGINT(15) AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    PID BIGINT(15) AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    DrugIdentifier BIGINT(15),
     VersionID BIGINT(12),
     Name VARCHAR(30),
     FormTekst VARCHAR(150),
@@ -100,7 +105,8 @@ CREATE TABLE ddv_ssidrugs (
 
 
 CREATE TABLE ddv_ssidrugs_lmsdrugs (
-    SSIDrugIdentifier BIGINT(15) AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    PID BIGINT(15) AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    SSIDrugIdentifier BIGINT(15),
     LMSDrugID BIGINT(12),
     SSIDrugVersion INT(1),
 
@@ -116,7 +122,8 @@ CREATE TABLE ddv_ssidrugs_lmsdrugs (
 ) ENGINE=InnoDB COLLATE=utf8_bin;
 
 CREATE TABLE ddv_vaccinationplanitems (
-    VaccinationPlanItemIdentifier BIGINT(15) AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    PID BIGINT(15) AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    VaccinationPlanItemIdentifier BIGINT(15),
     VersionID BIGINT(10),
     VaccineIdentifier BIGINT(15),
     VaccineName VARCHAR(100),
@@ -141,7 +148,8 @@ CREATE TABLE ddv_vaccinationplanitems (
 ) ENGINE=InnoDB COLLATE=utf8_bin;
 
 CREATE TABLE ddv_vaccinationplans (
-    VaccinationPlanIdentifier BIGINT(15) AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    PID BIGINT(15) AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    VaccinationPlanIdentifier BIGINT(15),
     VersionID BIGINT(10),
     Active INT(1),
     Name VARCHAR(60),
@@ -166,7 +174,8 @@ CREATE TABLE ddv_vaccinationplans (
 ) ENGINE=InnoDB COLLATE=utf8_bin;
 
 CREATE TABLE ddv_vaccines (
-    VaccineIdentifier BIGINT(15) AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    PID BIGINT(15) AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    VaccineIdentifier BIGINT(15),
     VersionID BIGINT(12),
     ATCCode VARCHAR(8),
     ATCText VARCHAR(72),
@@ -188,7 +197,8 @@ CREATE TABLE ddv_vaccines (
 ) ENGINE=InnoDB COLLATE=utf8_bin;
 
 CREATE TABLE ddv_vaccinesdrugs (
-    VaccineIdentifier BIGINT(15) AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    PID BIGINT(15) AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    VaccineIdentifier BIGINT(15),
     VersionID BIGINT(12),
     DrugIdentifier BIGINT(12),
     DrugName VARCHAR(30),

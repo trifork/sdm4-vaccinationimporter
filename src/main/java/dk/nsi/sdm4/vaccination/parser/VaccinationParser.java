@@ -23,6 +23,7 @@ import dk.nsi.sdm4.core.persistence.recordpersister.RecordBuilder;
 import dk.nsi.sdm4.core.persistence.recordpersister.RecordPersister;
 import dk.nsi.sdm4.core.persistence.recordpersister.RecordSpecification;
 import dk.nsi.sdm4.vaccination.model.Diseases;
+import dk.nsi.sdm4.vaccination.model.DiseasesVaccines;
 import dk.nsi.sdm4.vaccination.recordspecs.VaccinationRecordSpecs;
 import dk.sdsd.nsp.slalog.api.SLALogItem;
 import dk.sdsd.nsp.slalog.api.SLALogger;
@@ -58,7 +59,7 @@ public class VaccinationParser implements Parser {
     private final Map<String, Class> typesForFiles = new HashMap<String, Class>() {
         {
             put("ExpDiseases.xml", Diseases.class);
-//            put("ExpDiseasesVaccines.xml", );
+            put("ExpDiseasesVaccines.xml", DiseasesVaccines.class);
 //            put("ExpDosageoptions.xml", );
 //            put("ExpServices.xml", );
 //            put("ExpSSIDrugLMSDrugs.xml", );
@@ -108,6 +109,9 @@ public class VaccinationParser implements Parser {
             List<Record> records = null;
             if(obj instanceof Diseases) {
                 records = RecordBuilderHelper.buildDiseaseRecords((Diseases)obj, spec);
+            }
+            else if(obj instanceof DiseasesVaccines) {
+                records = RecordBuilderHelper.buildDiseaseVaccineRecords((DiseasesVaccines)obj, spec);
             } else {
                 throw new ParserException("Cannot persist unknown object: "+ obj);
             }
@@ -120,6 +124,10 @@ public class VaccinationParser implements Parser {
     }
 
     Object unmarshallFile(File file, Class clazz) {
+        
+        if(clazz == null) {
+            throw new ParserException("Cannot unmarshall unknown filetype: "+file.getName());
+        }
         
         Object jaxbObject = null;
         try {
