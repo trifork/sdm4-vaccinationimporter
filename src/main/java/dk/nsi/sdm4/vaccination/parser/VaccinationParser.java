@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
@@ -19,11 +18,11 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import dk.nsi.sdm4.core.parser.Parser;
 import dk.nsi.sdm4.core.parser.ParserException;
 import dk.nsi.sdm4.core.persistence.recordpersister.Record;
-import dk.nsi.sdm4.core.persistence.recordpersister.RecordBuilder;
 import dk.nsi.sdm4.core.persistence.recordpersister.RecordPersister;
 import dk.nsi.sdm4.core.persistence.recordpersister.RecordSpecification;
 import dk.nsi.sdm4.vaccination.model.Diseases;
 import dk.nsi.sdm4.vaccination.model.DiseasesVaccines;
+import dk.nsi.sdm4.vaccination.model.Dosageoptions;
 import dk.nsi.sdm4.vaccination.recordspecs.VaccinationRecordSpecs;
 import dk.sdsd.nsp.slalog.api.SLALogItem;
 import dk.sdsd.nsp.slalog.api.SLALogger;
@@ -60,7 +59,7 @@ public class VaccinationParser implements Parser {
         {
             put("ExpDiseases.xml", Diseases.class);
             put("ExpDiseasesVaccines.xml", DiseasesVaccines.class);
-//            put("ExpDosageoptions.xml", );
+            put("ExpDosageoptions.xml", Dosageoptions.class);
 //            put("ExpServices.xml", );
 //            put("ExpSSIDrugLMSDrugs.xml", );
 //            put("ExpSSIDrugs.xml", );
@@ -112,6 +111,9 @@ public class VaccinationParser implements Parser {
             }
             else if(obj instanceof DiseasesVaccines) {
                 records = RecordBuilderHelper.buildDiseaseVaccineRecords((DiseasesVaccines)obj, spec);
+            }
+            else if(obj instanceof Dosageoptions) {
+                    records = RecordBuilderHelper.buildDosageoptionsRecords((Dosageoptions)obj, spec);
             } else {
                 throw new ParserException("Cannot persist unknown object: "+ obj);
             }

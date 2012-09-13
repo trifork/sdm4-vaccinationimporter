@@ -1,7 +1,5 @@
 package dk.nsi.sdm4.vaccination.parser;
 
-import static dk.nsi.sdm4.core.persistence.recordpersister.FieldSpecification.field;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +10,8 @@ import dk.nsi.sdm4.vaccination.model.Disease;
 import dk.nsi.sdm4.vaccination.model.DiseaseVaccine;
 import dk.nsi.sdm4.vaccination.model.Diseases;
 import dk.nsi.sdm4.vaccination.model.DiseasesVaccines;
+import dk.nsi.sdm4.vaccination.model.Dosageoption;
+import dk.nsi.sdm4.vaccination.model.Dosageoptions;
 
 
 public class RecordBuilderHelper {
@@ -47,6 +47,26 @@ public class RecordBuilderHelper {
             record.field("DiseaseIdentifier", d.getDiseaseIdentifier());
             record.field("DiseaseVersion", d.getDiseaseVersion());
             
+            record.field("ddvModifiedDate", d.getDdvModifiedDate());
+            record.field("ddvValidFrom", d.getDdvValidFrom());
+            record.field("ddvValidTo", d.getDdvValidTo());
+            
+            records.add(record.build());
+        }
+        return records;
+    }
+
+    public static List<Record> buildDosageoptionsRecords(Dosageoptions dos, RecordSpecification spec) {
+        List<Record> records = new ArrayList<Record>();
+        for (Dosageoption d : dos.getDosageoptionsList()) {
+            RecordBuilder record = new RecordBuilder(spec);
+
+            record.field("DosageoptionIdentifier", d.getDosageoptionIdentifier());
+            record.field("VersionID", d.getVersionID());
+            record.field("DrugIdentifier", d.getDrugIdentifier());
+            record.field("DrugName", d.getDrugName());
+            record.field("DosageText", d.getDosageText());
+
             record.field("ddvModifiedDate", d.getDdvModifiedDate());
             record.field("ddvValidFrom", d.getDdvValidFrom());
             record.field("ddvValidTo", d.getDdvValidTo());

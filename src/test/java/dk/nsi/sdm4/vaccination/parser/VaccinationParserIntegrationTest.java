@@ -68,4 +68,16 @@ public class VaccinationParserIntegrationTest
         assertEquals(1800, jdbcTemplate.queryForInt("select count(*) from ddv_diseases_vaccines"));
         assertEquals("2012-09-04 12:37:56.0", jdbcTemplate.queryForObject("select ddvModifiedDate from ddv_diseases_vaccines where DiseaseIdentifier = 25 and VaccineIdentifier = 1617209100", String.class));
     }
+    
+    @Test
+    public void parseAndPersistDosageoptions() throws IOException {
+        // 1 folder containing 1 file
+        File file = FileUtils.toFile(getClass().getClassLoader().getResource("dosageoptions"));
+        
+        parser.process(file);
+        assertEquals(10, jdbcTemplate.queryForInt("select count(*) from ddv_dosageoptions"));
+        assertEquals(4, jdbcTemplate.queryForInt("select count(*) from ddv_dosageoptions where DrugIdentifier = 28101565493"));
+        assertEquals("1 * 1/4 dosis - barn under 20 kg", jdbcTemplate.queryForObject("select DosageText from ddv_dosageoptions where DrugIdentifier = 28101565493 and dosageoptionIdentifier = 111111", String.class));
+    }
+    
 }
