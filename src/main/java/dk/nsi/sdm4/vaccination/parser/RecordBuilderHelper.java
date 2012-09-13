@@ -12,6 +12,8 @@ import dk.nsi.sdm4.vaccination.model.Diseases;
 import dk.nsi.sdm4.vaccination.model.DiseasesVaccines;
 import dk.nsi.sdm4.vaccination.model.Dosageoption;
 import dk.nsi.sdm4.vaccination.model.Dosageoptions;
+import dk.nsi.sdm4.vaccination.model.Service;
+import dk.nsi.sdm4.vaccination.model.Services;
 
 
 public class RecordBuilderHelper {
@@ -70,6 +72,31 @@ public class RecordBuilderHelper {
             record.field("ddvModifiedDate", d.getDdvModifiedDate());
             record.field("ddvValidFrom", d.getDdvValidFrom());
             record.field("ddvValidTo", d.getDdvValidTo());
+            
+            records.add(record.build());
+        }
+        return records;
+    }
+
+    public static List<Record> buildServicesRecords(Services svcs, RecordSpecification spec) {
+        List<Record> records = new ArrayList<Record>();
+        for (Service s : svcs.getServicesList()) {
+            RecordBuilder record = new RecordBuilder(spec);
+
+            record.field("ServiceIdentifier", s.getServiceIdentifier());
+            record.field("VersionID", s.getVersionID());
+            record.field("Number", s.getNumber());
+            record.field("Description", s.getDescription());
+            record.field("UsableFrom", s.getUsableFrom());
+            record.field("UsableTo", s.getUsableTo());
+            record.field("PrimaryVaccineIdentifier", s.getPrimaryVaccineIdentifier());
+            record.field("PrimaryVaccineVersionID", s.getPrimaryVaccineVersionID());
+            record.field("SecondaryVaccineIdentifier", s.getSecondaryVaccineIdentifier());
+            record.field("SecondaryVaccineVersionID", s.getSecondaryVaccineVersionID());
+            
+            record.field("ddvModifiedDate", s.getDdvModifiedDate());
+            record.field("ddvValidFrom", s.getDdvValidFrom());
+            record.field("ddvValidTo", s.getDdvValidTo());
             
             records.add(record.build());
         }
