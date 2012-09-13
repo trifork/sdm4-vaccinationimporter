@@ -44,4 +44,19 @@ public class VaccinationParserIntegrationTest
         }
 	    
 	}
+	
+    @Test
+    public void parseAndPersistDiseases() throws IOException {
+        // 1 folder containing 1 file
+        File file = FileUtils.toFile(getClass().getClassLoader().getResource("diseases"));
+        
+        parser.process(file);
+        
+        assertEquals(25, jdbcTemplate.queryForInt("select count(*) from ddv_diseases"));
+        
+        assertEquals("Brucellose vacciner", jdbcTemplate.queryForObject("select ATCText from ddv_diseases where DiseaseIdentifier = 2", String.class));
+        assertEquals("2002-09-01 00:00:00.0", jdbcTemplate.queryForObject("select ddvValidFrom from ddv_diseases where DiseaseIdentifier = 2", String.class));
+        
+    }
+	
 }

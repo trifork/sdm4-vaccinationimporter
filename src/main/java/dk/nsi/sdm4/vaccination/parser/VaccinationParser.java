@@ -1,8 +1,10 @@
 package dk.nsi.sdm4.vaccination.parser;
 
 import java.io.File;
+import java.sql.SQLException;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.xml.bind.JAXBContext;
@@ -16,12 +18,15 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import dk.nsi.sdm4.core.parser.Parser;
 import dk.nsi.sdm4.core.parser.ParserException;
+import dk.nsi.sdm4.core.persistence.recordpersister.Record;
+import dk.nsi.sdm4.core.persistence.recordpersister.RecordBuilder;
 import dk.nsi.sdm4.core.persistence.recordpersister.RecordPersister;
 import dk.nsi.sdm4.core.persistence.recordpersister.RecordSpecification;
 import dk.nsi.sdm4.vaccination.model.Diseases;
 import dk.nsi.sdm4.vaccination.recordspecs.VaccinationRecordSpecs;
 import dk.sdsd.nsp.slalog.api.SLALogItem;
 import dk.sdsd.nsp.slalog.api.SLALogger;
+
 
 public class VaccinationParser implements Parser {
 	private static final Logger log = Logger.getLogger(VaccinationParser.class);
@@ -30,10 +35,10 @@ public class VaccinationParser implements Parser {
 	private SLALogger slaLogger;
 
 	@Autowired
-	private RecordPersister persister;
-
-	@Autowired
 	private JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    private RecordPersister persister;
 
     private final Map<String, RecordSpecification> specsForFiles = new HashMap<String, RecordSpecification>() {
         {
@@ -65,7 +70,7 @@ public class VaccinationParser implements Parser {
         }
     };
 
-	public void process(File datadir) throws ParserException {
+	public void process(File dataSet) throws ParserException {
 
 	    SLALogItem slaLogItem = slaLogger.createLogItem("VaccinationParser", "All");
 
@@ -73,9 +78,19 @@ public class VaccinationParser implements Parser {
 		    // TODO validate fileset
 		    
 		    truncateTables();
-		    // TODO fetch file
 		    
-		    unmarshallFile(datadir, Diseases.class);
+            File[] input = null;
+            if(dataSet.isDirectory()) {
+                 input = dataSet.listFiles();
+            } else {
+                input = new File[] {dataSet};
+            }
+
+            for (int i = 0; i < input.length; i++) {
+                File file = input[i];
+                Object obj = unmarshallFile(file, typesForFiles.get(file.getName()));
+                persistObject(obj, specsForFiles.get(file.getName()));
+            }
 
 			slaLogItem.setCallResultOk();
 			slaLogItem.store();
@@ -87,6 +102,23 @@ public class VaccinationParser implements Parser {
 		}
 	}
 	
+    void persistObject(Object obj, RecordSpecification spec) {
+
+        try {
+            List<Record> records = null;
+            if(obj instanceof Diseases) {
+                records = RecordBuilderHelper.buildDiseaseRecords((Diseases)obj, spec);
+            } else {
+                throw new ParserException("Cannot persist unknown object: "+ obj);
+            }
+            for (Record record : records) {
+                persister.persist(record, spec);
+            }
+        } catch(SQLException e) {
+            throw new ParserException("Error persisting object with recordSpecification " + spec, e);
+        }
+    }
+
     Object unmarshallFile(File file, Class clazz) {
         
         Object jaxbObject = null;
@@ -104,7 +136,7 @@ public class VaccinationParser implements Parser {
 	
 
     /*
-     * Tables needs to be truncated before each run, because SOR-Relation tables must not support history
+     * Tables needs to be truncated before each run, because Vaccination has no history support
      */
     private void truncateTables() {
         Collection<RecordSpecification> values = specsForFiles.values();
