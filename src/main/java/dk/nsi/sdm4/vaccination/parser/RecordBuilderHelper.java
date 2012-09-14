@@ -1,5 +1,7 @@
 package dk.nsi.sdm4.vaccination.parser;
 
+import static dk.nsi.sdm4.core.persistence.recordpersister.FieldSpecification.field;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +14,8 @@ import dk.nsi.sdm4.vaccination.model.Diseases;
 import dk.nsi.sdm4.vaccination.model.DiseasesVaccines;
 import dk.nsi.sdm4.vaccination.model.Dosageoption;
 import dk.nsi.sdm4.vaccination.model.Dosageoptions;
+import dk.nsi.sdm4.vaccination.model.SSIDrug;
+import dk.nsi.sdm4.vaccination.model.SSIDrugs;
 import dk.nsi.sdm4.vaccination.model.Service;
 import dk.nsi.sdm4.vaccination.model.Services;
 
@@ -97,6 +101,30 @@ public class RecordBuilderHelper {
             record.field("ddvModifiedDate", s.getDdvModifiedDate());
             record.field("ddvValidFrom", s.getDdvValidFrom());
             record.field("ddvValidTo", s.getDdvValidTo());
+            
+            records.add(record.build());
+        }
+        return records;
+    }
+
+    public static List<Record> buildSSIDrugsRecords(SSIDrugs sds, RecordSpecification spec) {
+        List<Record> records = new ArrayList<Record>();
+        for (SSIDrug d : sds.getSSIDrugsList()) {
+            RecordBuilder record = new RecordBuilder(spec);
+
+            record.field("DrugIdentifier", d.getDrugIdentifier());
+            record.field("VersionID", d.getVersionID());
+            record.field("Name", d.getName());
+            record.field("FormTekst", d.getFormTekst());
+            record.field("ATCCode", d.getaTCCode());
+            record.field("ATCText", d.getaTCText());
+            record.field("StyrkeTekst", d.getStyrkeTekst());
+            record.field("UsableFrom", d.getUsableFrom());
+            record.field("UsableTo", d.getUsableTo());
+
+            record.field("ddvModifiedDate", d.getDdvModifiedDate());
+            record.field("ddvValidFrom", d.getDdvValidFrom());
+            record.field("ddvValidTo", d.getDdvValidTo());
             
             records.add(record.build());
         }

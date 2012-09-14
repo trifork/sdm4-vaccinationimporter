@@ -23,6 +23,7 @@ import dk.nsi.sdm4.core.persistence.recordpersister.RecordSpecification;
 import dk.nsi.sdm4.vaccination.model.Diseases;
 import dk.nsi.sdm4.vaccination.model.DiseasesVaccines;
 import dk.nsi.sdm4.vaccination.model.Dosageoptions;
+import dk.nsi.sdm4.vaccination.model.SSIDrugs;
 import dk.nsi.sdm4.vaccination.model.Services;
 import dk.nsi.sdm4.vaccination.recordspecs.VaccinationRecordSpecs;
 import dk.sdsd.nsp.slalog.api.SLALogItem;
@@ -63,7 +64,7 @@ public class VaccinationParser implements Parser {
             put("ExpDosageoptions.xml", Dosageoptions.class);
             put("ExpServices.xml", Services.class);
 //            put("ExpSSIDrugLMSDrugs.xml", );
-//            put("ExpSSIDrugs.xml", );
+            put("ExpSSIDrugs.xml", SSIDrugs.class);
 //            put("ExpVaccinationPlanItems.xml", );
 //            put("ExpVaccinationPlans.xml", );
 //            put("ExpVaccines.xml", );
@@ -118,7 +119,9 @@ public class VaccinationParser implements Parser {
             }
             else if(obj instanceof Services) {
                 records = RecordBuilderHelper.buildServicesRecords((Services)obj, spec);
-                        
+            }
+            else if(obj instanceof SSIDrugs) {
+                records = RecordBuilderHelper.buildSSIDrugsRecords((SSIDrugs)obj, spec);
             } else {
                 throw new ParserException("Cannot persist unknown object: "+ obj);
             }

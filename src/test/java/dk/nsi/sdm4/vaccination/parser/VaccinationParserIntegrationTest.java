@@ -90,4 +90,13 @@ public class VaccinationParserIntegrationTest
         assertEquals("Statens Seruminstit.", jdbcTemplate.queryForObject("select Description from ddv_services where serviceidentifier = 32103114106", String.class));
     }
 
+    @Test
+    public void parseAndPersistSSIDrugs() throws IOException {
+        // 1 folder containing 1 file
+        File file = FileUtils.toFile(getClass().getClassLoader().getResource("ssidrugs"));
+        
+        parser.process(file);
+        assertEquals(4, jdbcTemplate.queryForInt("select count(*) from ddv_ssidrugs"));
+        assertEquals("Zopiklon Merck NM", jdbcTemplate.queryForObject("select Name from ddv_ssidrugs where drugidentifier = 4", String.class));
+    }
 }
