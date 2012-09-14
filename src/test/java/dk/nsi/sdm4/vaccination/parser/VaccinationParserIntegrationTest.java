@@ -81,16 +81,6 @@ public class VaccinationParserIntegrationTest
     }
 
     @Test
-    public void parseAndPersistServices() throws IOException {
-        // 1 folder containing 1 file
-        File file = FileUtils.toFile(getClass().getClassLoader().getResource("services"));
-        
-        parser.process(file);
-        assertEquals(77, jdbcTemplate.queryForInt("select count(*) from ddv_services"));
-        assertEquals("Statens Seruminstit.", jdbcTemplate.queryForObject("select Description from ddv_services where serviceidentifier = 32103114106", String.class));
-    }
-
-    @Test
     public void parseAndPersistSSIDrugs() throws IOException {
         // 1 folder containing 1 file
         File file = FileUtils.toFile(getClass().getClassLoader().getResource("ssidrugs"));

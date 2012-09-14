@@ -24,7 +24,6 @@ import dk.nsi.sdm4.vaccination.model.Diseases;
 import dk.nsi.sdm4.vaccination.model.DiseasesVaccines;
 import dk.nsi.sdm4.vaccination.model.Dosageoptions;
 import dk.nsi.sdm4.vaccination.model.SSIDrugs;
-import dk.nsi.sdm4.vaccination.model.Services;
 import dk.nsi.sdm4.vaccination.recordspecs.VaccinationRecordSpecs;
 import dk.sdsd.nsp.slalog.api.SLALogItem;
 import dk.sdsd.nsp.slalog.api.SLALogger;
@@ -47,8 +46,6 @@ public class VaccinationParser implements Parser {
             put("ExpDiseases.xml", VaccinationRecordSpecs.DISEASES_RECORD_SPEC);
             put("ExpDiseasesVaccines.xml", VaccinationRecordSpecs.DISEASESVACCINES_RECORD_SPEC);
             put("ExpDosageoptions.xml", VaccinationRecordSpecs.DOSAGEOPTIONS_RECORD_SPEC);
-            put("ExpServices.xml", VaccinationRecordSpecs.SERVICES_RECORD_SPEC);
-            put("ExpSSIDrugLMSDrugs.xml", VaccinationRecordSpecs.SSIDRUGSLMSDRUGS_RECORD_SPEC);
             put("ExpSSIDrugs.xml", VaccinationRecordSpecs.SSIDRUGS_RECORD_SPEC);
             put("ExpVaccinationPlanItems.xml", VaccinationRecordSpecs.VACCINATIONPLANITEMS_RECORD_SPEC);
             put("ExpVaccinationPlans.xml", VaccinationRecordSpecs.VACCINATIONPLANS_RECORD_SPEC);
@@ -62,8 +59,6 @@ public class VaccinationParser implements Parser {
             put("ExpDiseases.xml", Diseases.class);
             put("ExpDiseasesVaccines.xml", DiseasesVaccines.class);
             put("ExpDosageoptions.xml", Dosageoptions.class);
-            put("ExpServices.xml", Services.class);
-//            put("ExpSSIDrugLMSDrugs.xml", );
             put("ExpSSIDrugs.xml", SSIDrugs.class);
 //            put("ExpVaccinationPlanItems.xml", );
 //            put("ExpVaccinationPlans.xml", );
@@ -116,9 +111,6 @@ public class VaccinationParser implements Parser {
             }
             else if(obj instanceof Dosageoptions) {
                     records = RecordBuilderHelper.buildDosageoptionsRecords((Dosageoptions)obj, spec);
-            }
-            else if(obj instanceof Services) {
-                records = RecordBuilderHelper.buildServicesRecords((Services)obj, spec);
             }
             else if(obj instanceof SSIDrugs) {
                 records = RecordBuilderHelper.buildSSIDrugsRecords((SSIDrugs)obj, spec);

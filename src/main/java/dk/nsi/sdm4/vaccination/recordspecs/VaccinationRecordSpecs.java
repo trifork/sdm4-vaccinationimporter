@@ -36,21 +36,6 @@ public class VaccinationRecordSpecs {
             field("ddvValidFrom", 25),
             field("ddvValidTo", 25));
 
-    public static final RecordSpecification SERVICES_RECORD_SPEC = RecordSpecification.createSpecification("ddv_services", "ServiceIdentifier", 
-            field("ServiceIdentifier", 15).numerical(),
-            field("VersionID", 12).numerical(),
-            field("Number", 4),
-            field("Description", 40),
-            field("UsableFrom", 25),
-            field("UsableTo", 25),
-            field("PrimaryVaccineIdentifier", 15).numerical(),
-            field("PrimaryVaccineVersionID", 12).numerical(),
-            field("SecondaryVaccineIdentifier", 15).numerical(),
-            field("SecondaryVaccineVersionID", 12).numerical(),
-            field("ddvModifiedDate", 25),
-            field("ddvValidFrom", 25),
-            field("ddvValidTo", 25));
-
     public static final RecordSpecification SSIDRUGS_RECORD_SPEC = RecordSpecification.createSpecification("ddv_ssidrugs", "DrugIdentifier", 
             field("DrugIdentifier", 15).numerical(),
             field("VersionID", 12).numerical(),
@@ -61,14 +46,6 @@ public class VaccinationRecordSpecs {
             field("StyrkeTekst", 30),
             field("UsableFrom", 25),
             field("UsableTo", 25),
-            field("ddvModifiedDate", 25),
-            field("ddvValidFrom", 25),
-            field("ddvValidTo", 25));
-
-    public static final RecordSpecification SSIDRUGSLMSDRUGS_RECORD_SPEC = RecordSpecification.createSpecification("ddv_ssidrugs_lmsdrugs", "SSIDrugIdentifier", 
-            field("SSIDrugIdentifier", 15).numerical(),
-            field("LMSDrugID", 12).numerical(),
-            field("SSIDrugVersion", 1),
             field("ddvModifiedDate", 25),
             field("ddvValidFrom", 25),
             field("ddvValidTo", 25));

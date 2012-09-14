@@ -56,30 +56,6 @@ CREATE TABLE ddv_dosageoptions (
     INDEX (DosageoptionIdentifier, ValidTo, ValidFrom)
 ) ENGINE=InnoDB COLLATE=utf8_bin;
 
-CREATE TABLE ddv_services (
-    PID BIGINT(15) AUTO_INCREMENT NOT NULL PRIMARY KEY,
-    ServiceIdentifier BIGINT(15),
-    VersionID BIGINT(12),
-    Number VARCHAR(4),
-    Description VARCHAR(40),
-    UsableFrom DATETIME,
-    UsableTo DATETIME,
-    PrimaryVaccineIdentifier BIGINT(15),
-    PrimaryVaccineVersionID BIGINT(12),
-    SecondaryVaccineIdentifier BIGINT(15),
-    SecondaryVaccineVersionID BIGINT(12),
-
-    ddvModifiedDate DATETIME,
-    ddvValidFrom DATETIME,
-    ddvValidTo DATETIME,
-
-    ModifiedDate DATETIME NOT NULL,
-    ValidFrom DATETIME NOT NULL,
-    ValidTo DATETIME,
-
-    INDEX (ServiceIdentifier, ValidTo, ValidFrom)
-) ENGINE=InnoDB COLLATE=utf8_bin;
-
 CREATE TABLE ddv_ssidrugs (
     PID BIGINT(15) AUTO_INCREMENT NOT NULL PRIMARY KEY,
     DrugIdentifier BIGINT(15),
@@ -101,24 +77,6 @@ CREATE TABLE ddv_ssidrugs (
     ValidTo DATETIME,
 
     INDEX (DrugIdentifier, ValidTo, ValidFrom)
-) ENGINE=InnoDB COLLATE=utf8_bin;
-
-
-CREATE TABLE ddv_ssidrugs_lmsdrugs (
-    PID BIGINT(15) AUTO_INCREMENT NOT NULL PRIMARY KEY,
-    SSIDrugIdentifier BIGINT(15),
-    LMSDrugID BIGINT(12),
-    SSIDrugVersion INT(1),
-
-    ddvModifiedDate DATETIME,
-    ddvValidFrom DATETIME,
-    ddvValidTo DATETIME,
-
-    ModifiedDate DATETIME NOT NULL,
-    ValidFrom DATETIME NOT NULL,
-    ValidTo DATETIME,
-
-    INDEX (SSIDrugIdentifier, ValidTo, ValidFrom)
 ) ENGINE=InnoDB COLLATE=utf8_bin;
 
 CREATE TABLE ddv_vaccinationplanitems (
