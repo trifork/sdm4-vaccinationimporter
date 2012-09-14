@@ -6,3 +6,11 @@ Dosageoptions
 Dosageoption
 SSIDrugs
 SSIDrug
+VaccinationPlanItems
+VaccinationPlanItem
+VaccinationPlans
+VaccinationPlan
+Vaccines
+Vaccine
+VaccinesDrugs
+VaccineDrug

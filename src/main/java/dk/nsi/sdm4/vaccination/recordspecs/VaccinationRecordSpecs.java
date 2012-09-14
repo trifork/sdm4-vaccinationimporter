@@ -79,7 +79,7 @@ public class VaccinationRecordSpecs {
             field("BirthCohorteFrom", 25),
             field("BirthCohorteTo", 25),
             field("AgeIntervalFrom", 11).numerical(),
-            field("AgeIntervalTo", 11),
+            field("AgeIntervalTo", 11).numerical(),
             field("ddvModifiedDate", 25),
             field("ddvValidFrom", 25),
             field("ddvValidTo", 25));
@@ -93,7 +93,7 @@ public class VaccinationRecordSpecs {
             field("AllowCitizenSelfRegister", 1).numerical(),
             field("AllowBulkRegister", 1).numerical(),
             field("Keywords", 2000),
-            field("SearchBoost", 8),
+            field("SearchBoost", 8).decimal10_3(),
             field("ddvModifiedDate", 25),
             field("ddvValidFrom", 25),
             field("ddvValidTo", 25));

@@ -24,6 +24,10 @@ import dk.nsi.sdm4.vaccination.model.Diseases;
 import dk.nsi.sdm4.vaccination.model.DiseasesVaccines;
 import dk.nsi.sdm4.vaccination.model.Dosageoptions;
 import dk.nsi.sdm4.vaccination.model.SSIDrugs;
+import dk.nsi.sdm4.vaccination.model.VaccinationPlanItems;
+import dk.nsi.sdm4.vaccination.model.VaccinationPlans;
+import dk.nsi.sdm4.vaccination.model.Vaccines;
+import dk.nsi.sdm4.vaccination.model.VaccinesDrugs;
 import dk.nsi.sdm4.vaccination.recordspecs.VaccinationRecordSpecs;
 import dk.sdsd.nsp.slalog.api.SLALogItem;
 import dk.sdsd.nsp.slalog.api.SLALogger;
@@ -60,10 +64,10 @@ public class VaccinationParser implements Parser {
             put("ExpDiseasesVaccines.xml", DiseasesVaccines.class);
             put("ExpDosageoptions.xml", Dosageoptions.class);
             put("ExpSSIDrugs.xml", SSIDrugs.class);
-//            put("ExpVaccinationPlanItems.xml", );
-//            put("ExpVaccinationPlans.xml", );
-//            put("ExpVaccines.xml", );
-//            put("ExpVaccinesDrugs.xml", );
+            put("ExpVaccinationPlanItems.xml", VaccinationPlanItems.class);
+            put("ExpVaccinationPlans.xml", VaccinationPlans.class);
+            put("ExpVaccines.xml", Vaccines.class);
+            put("ExpVaccinesDrugs.xml", VaccinesDrugs.class);
         }
     };
 
@@ -72,7 +76,7 @@ public class VaccinationParser implements Parser {
 	    SLALogItem slaLogItem = slaLogger.createLogItem("VaccinationParser", "All");
 
 		try {
-		    // TODO validate fileset
+		    validateDataset(dataSet);
 		    
 		    truncateTables();
 		    
@@ -99,7 +103,24 @@ public class VaccinationParser implements Parser {
 		}
 	}
 	
-    void persistObject(Object obj, RecordSpecification spec) {
+    private void validateDataset(File dataSet) {
+        File[] input = null;
+        if(dataSet.isDirectory()) {
+             input = dataSet.listFiles();
+        } else {
+            input = new File[] {dataSet};
+        }
+
+        for (int i = 0; i < input.length; i++) {
+            File file = input[i];
+            boolean contains = typesForFiles.keySet().contains(file.getName());
+            if(!contains) {
+                throw new ParserException("Validating files, found unknown file: " + file.getName());
+            }
+        }
+    }
+
+    private void persistObject(Object obj, RecordSpecification spec) {
 
         try {
             List<Record> records = null;
@@ -111,6 +132,18 @@ public class VaccinationParser implements Parser {
             }
             else if(obj instanceof Dosageoptions) {
                     records = RecordBuilderHelper.buildDosageoptionsRecords((Dosageoptions)obj, spec);
+            }
+            else if(obj instanceof VaccinationPlanItems) {
+                records = RecordBuilderHelper.buildVaccinationPlanItemsRecords((VaccinationPlanItems)obj, spec);
+            }
+            else if(obj instanceof VaccinationPlans) {
+                records = RecordBuilderHelper.buildVaccinationPlansRecords((VaccinationPlans)obj, spec);
+            }
+            else if(obj instanceof Vaccines) {
+                records = RecordBuilderHelper.buildVaccinesRecords((Vaccines)obj, spec);
+            }
+            else if(obj instanceof VaccinesDrugs) {
+                records = RecordBuilderHelper.buildVaccinesDrugsRecords((VaccinesDrugs)obj, spec);
             }
             else if(obj instanceof SSIDrugs) {
                 records = RecordBuilderHelper.buildSSIDrugsRecords((SSIDrugs)obj, spec);
@@ -138,8 +171,7 @@ public class VaccinationParser implements Parser {
             
             jaxbObject =  jaxbUnmarshaller.unmarshal(file);
         } catch (JAXBException e) {
-            // TODO
-            e.printStackTrace();
+            throw new ParserException("cannot unmarshal file: "+file.getName(), e);
         }
         return jaxbObject;
     }

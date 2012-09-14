@@ -89,4 +89,56 @@ public class VaccinationParserIntegrationTest
         assertEquals(4, jdbcTemplate.queryForInt("select count(*) from ddv_ssidrugs"));
         assertEquals("Zopiklon Merck NM", jdbcTemplate.queryForObject("select Name from ddv_ssidrugs where drugidentifier = 4", String.class));
     }
+
+    @Test
+    public void parseAndPersistVaccinationPlanItems() throws IOException {
+        // 1 folder containing 1 file
+        File file = FileUtils.toFile(getClass().getClassLoader().getResource("vaccinationplanitems"));
+        
+        parser.process(file);
+        assertEquals(12, jdbcTemplate.queryForInt("select count(*) from ddv_vaccinationplanitems"));
+    }
+
+    @Test
+    public void parseAndPersistVaccinationPlans() throws IOException {
+        // 1 folder containing 1 file
+        File file = FileUtils.toFile(getClass().getClassLoader().getResource("vaccinationplans"));
+        
+        parser.process(file);
+        assertEquals(2, jdbcTemplate.queryForInt("select count(*) from ddv_vaccinationplans"));
+    }
+
+    @Test
+    public void parseAndPersistVaccinesDrugs() throws IOException {
+        // 1 folder containing 1 file
+        File file = FileUtils.toFile(getClass().getClassLoader().getResource("vaccinesdrugs"));
+        
+        parser.process(file);
+        assertEquals(38, jdbcTemplate.queryForInt("select count(*) from ddv_vaccinesdrugs"));
+    }
+
+    @Test
+    public void parseAndPersistVaccines() throws IOException {
+        // 1 folder containing 1 file
+        File file = FileUtils.toFile(getClass().getClassLoader().getResource("vaccines"));
+        
+        parser.process(file);
+        assertEquals(72, jdbcTemplate.queryForInt("select count(*) from ddv_vaccines"));
+    }
+
+    @Test
+    public void parseAndPersistAllFiles() throws IOException {
+        // 1 folder containing 1 file
+        File file = FileUtils.toFile(getClass().getClassLoader().getResource("data"));
+        
+        parser.process(file);
+        assertEquals(72, jdbcTemplate.queryForInt("select count(*) from ddv_vaccines"));
+        assertEquals(38, jdbcTemplate.queryForInt("select count(*) from ddv_vaccinesdrugs"));
+        assertEquals(2, jdbcTemplate.queryForInt("select count(*) from ddv_vaccinationplans"));
+        assertEquals(12, jdbcTemplate.queryForInt("select count(*) from ddv_vaccinationplanitems"));
+        assertEquals(4, jdbcTemplate.queryForInt("select count(*) from ddv_ssidrugs"));
+        assertEquals(10, jdbcTemplate.queryForInt("select count(*) from ddv_dosageoptions"));
+        assertEquals(1800, jdbcTemplate.queryForInt("select count(*) from ddv_diseases_vaccines"));
+        assertEquals(25, jdbcTemplate.queryForInt("select count(*) from ddv_diseases"));
+    }
 }
