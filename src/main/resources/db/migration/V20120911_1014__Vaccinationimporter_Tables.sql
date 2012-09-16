@@ -4,7 +4,7 @@ CREATE TABLE ddv_diseases (
     versionID BIGINT(12),
     name VARCHAR(100),
     name_dk VARCHAR(100),
-    ATCCode VARCHAR(7),
+    ATCCode VARCHAR(10),
     ATCText VARCHAR(72),
 
     ddvModifiedDate DATETIME,
@@ -41,7 +41,7 @@ CREATE TABLE ddv_dosageoptions (
     PID BIGINT(15) AUTO_INCREMENT NOT NULL PRIMARY KEY,
     DosageoptionIdentifier BIGINT(15),
     VersionID BIGINT(12),
-    DrugIdentifier BIGINT(12),
+    DrugIdentifier BIGINT(15),
     DrugName VARCHAR(30),
     DosageText VARCHAR(100),
 
@@ -82,7 +82,7 @@ CREATE TABLE ddv_ssidrugs (
 CREATE TABLE ddv_vaccinationplanitems (
     PID BIGINT(15) AUTO_INCREMENT NOT NULL PRIMARY KEY,
     VaccinationPlanItemIdentifier BIGINT(15),
-    VersionID BIGINT(10),
+    VersionID BIGINT(12),
     VaccineIdentifier BIGINT(15),
     VaccineName VARCHAR(100),
     VaccinationIndex BIGINT(12),
@@ -108,7 +108,7 @@ CREATE TABLE ddv_vaccinationplanitems (
 CREATE TABLE ddv_vaccinationplans (
     PID BIGINT(15) AUTO_INCREMENT NOT NULL PRIMARY KEY,
     VaccinationPlanIdentifier BIGINT(15),
-    VersionID BIGINT(10),
+    VersionID BIGINT(12),
     Active BIGINT(1),
     Name VARCHAR(60),
     UsableFrom DATETIME,
@@ -135,7 +135,7 @@ CREATE TABLE ddv_vaccines (
     PID BIGINT(15) AUTO_INCREMENT NOT NULL PRIMARY KEY,
     VaccineIdentifier BIGINT(15),
     VersionID BIGINT(12),
-    ATCCode VARCHAR(8),
+    ATCCode VARCHAR(10),
     ATCText VARCHAR(72),
     ShortDescription VARCHAR(100),
     AllowCitizenSelfRegister BIGINT(1),
@@ -158,7 +158,7 @@ CREATE TABLE ddv_vaccinesdrugs (
     PID BIGINT(15) AUTO_INCREMENT NOT NULL PRIMARY KEY,
     VaccineIdentifier BIGINT(15),
     VersionID BIGINT(12),
-    DrugIdentifier BIGINT(12),
+    DrugIdentifier BIGINT(15),
     DrugName VARCHAR(30),
 
     ddvModifiedDate DATETIME,
