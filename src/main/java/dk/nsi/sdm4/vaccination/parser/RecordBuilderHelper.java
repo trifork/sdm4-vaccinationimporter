@@ -1,7 +1,5 @@
 package dk.nsi.sdm4.vaccination.parser;
 
-import static dk.nsi.sdm4.core.persistence.recordpersister.FieldSpecification.field;
-
 import java.util.ArrayList;
 import java.util.List;
 
