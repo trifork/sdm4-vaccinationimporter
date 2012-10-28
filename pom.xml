@@ -9,13 +9,13 @@
 
 	<artifactId>vaccinationimporter</artifactId>
 	<packaging>war</packaging>
-	<version>4.1-SNAPSHOT</version>
+	<version>4.1</version>
 
     <scm>
         <url>scm:git:git@github.com:trifork/sdm4-vaccinationimporter</url>
         <connection>scm:git:git@github.com:trifork/sdm4-vaccinationimporter.git</connection>
         <developerConnection>scm:git:git@github.com:trifork/sdm4-vaccinationimporter.git</developerConnection>
-      <tag>HEAD</tag>
+      <tag>vaccinationimporter-4.1</tag>
   </scm>
     <issueManagement>
         <system>JIRA</system>
