@@ -81,7 +81,7 @@ public class VaccinationParserIntegrationTest
         assertEquals(25, jdbcTemplate.queryForInt("select count(*) from ddv_diseases"));
         
         assertEquals("Brucellose vacciner", jdbcTemplate.queryForObject("select ATCText from ddv_diseases where DiseaseIdentifier = 2", String.class));
-        assertEquals("2002-09-01 00:00:00.0", jdbcTemplate.queryForObject("select ddvValidFrom from ddv_diseases where DiseaseIdentifier = 2", String.class));
+        assertEquals("2002-09-01T00:00:00.000", jdbcTemplate.queryForObject("select ddvValidFrom from ddv_diseases where DiseaseIdentifier = 2", String.class));
         
     }
 
@@ -92,7 +92,7 @@ public class VaccinationParserIntegrationTest
         
         parser.process(file);
         assertEquals(1800, jdbcTemplate.queryForInt("select count(*) from ddv_diseases_vaccines"));
-        assertEquals("2012-09-04 12:37:56.0", jdbcTemplate.queryForObject("select ddvModifiedDate from ddv_diseases_vaccines where DiseaseIdentifier = 25 and VaccineIdentifier = 1617209100", String.class));
+        assertEquals("2012-09-04T12:37:56.000", jdbcTemplate.queryForObject("select ddvModifiedDate from ddv_diseases_vaccines where DiseaseIdentifier = 25 and VaccineIdentifier = 1617209100", String.class));
     }
     
     @Test
