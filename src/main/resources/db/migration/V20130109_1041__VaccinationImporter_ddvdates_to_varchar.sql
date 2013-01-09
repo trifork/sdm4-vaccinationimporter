@@ -13,7 +13,7 @@ ALTER TABLE ddv_ssidrugs MODIFY ddvModifiedDate VARCHAR(24) NOT NULL, MODIFY ddv
 
 ALTER TABLE ddv_vaccinationplanitems MODIFY ddvModifiedDate VARCHAR(24) NOT NULL, MODIFY ddvValidFrom VARCHAR(24) NOT NULL, MODIFY ddvValidTo VARCHAR(24);
 
-ALTER TABLE ddv_vaccinationplans MODIFY ddvModifiedDate VARCHAR(24) NOT NULL, MODIFY ddvValidFrom VARCHAR(24) NOT NULL, MODIFY ddvValidTo VARCHAR(24);
+ALTER TABLE ddv_vaccinationplans MODIFY ddvModifiedDate VARCHAR(24) NOT NULL, MODIFY ddvValidFrom VARCHAR(24) NOT NULL, MODIFY ddvValidTo VARCHAR(24), MODIFY UsableFrom VARCHAR(24), MODIFY UsableTo VARCHAR(24);
 
 ALTER TABLE ddv_vaccines MODIFY ddvModifiedDate VARCHAR(24) NOT NULL, MODIFY ddvValidFrom VARCHAR(24) NOT NULL, MODIFY ddvValidTo VARCHAR(24);
 

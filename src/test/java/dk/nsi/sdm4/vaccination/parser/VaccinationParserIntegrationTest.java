@@ -39,6 +39,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import dk.nsi.sdm4.testutils.TestDbConfiguration;
@@ -81,8 +82,7 @@ public class VaccinationParserIntegrationTest
         assertEquals(25, jdbcTemplate.queryForInt("select count(*) from ddv_diseases"));
         
         assertEquals("Brucellose vacciner", jdbcTemplate.queryForObject("select ATCText from ddv_diseases where DiseaseIdentifier = 2", String.class));
-        assertEquals("2002-09-01T00:00:00.000", jdbcTemplate.queryForObject("select ddvValidFrom from ddv_diseases where DiseaseIdentifier = 2", String.class));
-        
+        assertEquals("2002-08-31T22:00:00Z", jdbcTemplate.queryForObject("select ddvValidFrom from ddv_diseases where DiseaseIdentifier = 2", String.class));
     }
 
     @Test
@@ -91,8 +91,8 @@ public class VaccinationParserIntegrationTest
         File file = FileUtils.toFile(getClass().getClassLoader().getResource("diseasesVaccines"));
         
         parser.process(file);
-        assertEquals(1800, jdbcTemplate.queryForInt("select count(*) from ddv_diseases_vaccines"));
-        assertEquals("2012-09-04T12:37:56.000", jdbcTemplate.queryForObject("select ddvModifiedDate from ddv_diseases_vaccines where DiseaseIdentifier = 25 and VaccineIdentifier = 1617209100", String.class));
+        assertEquals(104, jdbcTemplate.queryForInt("select count(*) from ddv_diseases_vaccines"));
+        assertEquals("2013-01-04T19:20:23Z", jdbcTemplate.queryForObject("select ddvModifiedDate from ddv_diseases_vaccines where DiseaseIdentifier = 25 and VaccineIdentifier = 1617170660", String.class));
     }
     
     @Test
@@ -164,7 +164,7 @@ public class VaccinationParserIntegrationTest
         assertEquals(12, jdbcTemplate.queryForInt("select count(*) from ddv_vaccinationplanitems"));
         assertEquals(4, jdbcTemplate.queryForInt("select count(*) from ddv_ssidrugs"));
         assertEquals(10, jdbcTemplate.queryForInt("select count(*) from ddv_dosageoptions"));
-        assertEquals(1800, jdbcTemplate.queryForInt("select count(*) from ddv_diseases_vaccines"));
+        assertEquals(104, jdbcTemplate.queryForInt("select count(*) from ddv_diseases_vaccines"));
         assertEquals(25, jdbcTemplate.queryForInt("select count(*) from ddv_diseases"));
     }
 }
