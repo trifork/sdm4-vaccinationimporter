@@ -97,11 +97,17 @@ public class VaccinationParser implements Parser {
         }
     };
 
-	public void process(File dataSet) throws ParserException {
-
-	    SLALogItem slaLogItem = slaLogger.createLogItem("VaccinationParser", "All");
+	public void process(File dataSet, String identifier) throws ParserException {
+        SLALogItem slaLogItem = slaLogger.createLogItem(getHome()+".process", "SDM4."+getHome()+".process");
+        slaLogItem.setMessageId(identifier);
+        if (dataSet != null) {
+            slaLogItem.addCallParameter(Parser.SLA_INPUT_NAME, dataSet.getAbsolutePath());
+        }
 
 		try {
+            persister.resetTransactionTime();
+
+            long processed = 0;
 		    validateDataset(dataSet);
 		    
 		    truncateTables();
@@ -116,9 +122,9 @@ public class VaccinationParser implements Parser {
             for (int i = 0; i < input.length; i++) {
                 File file = input[i];
                 Object obj = unmarshallFile(file, typesForFiles.get(file.getName()));
-                persistObject(obj, specsForFiles.get(file.getName()));
+                processed += persistObject(obj, specsForFiles.get(file.getName()));
             }
-
+            slaLogItem.addCallParameter(Parser.SLA_RECORDS_PROCESSED_MAME, ""+processed);
 			slaLogItem.setCallResultOk();
 			slaLogItem.store();
 		} catch (Exception e) {
@@ -146,8 +152,8 @@ public class VaccinationParser implements Parser {
         }
     }
 
-    private void persistObject(Object obj, RecordSpecification spec) {
-
+    private long persistObject(Object obj, RecordSpecification spec) {
+        long processed = 0;
         try {
             List<Record> records = null;
             if(obj instanceof Diseases) {
@@ -179,9 +185,11 @@ public class VaccinationParser implements Parser {
             for (Record record : records) {
                 persister.persist(record, spec);
             }
+            processed = records.size();
         } catch(SQLException e) {
             throw new ParserException("Error persisting object with recordSpecification " + spec, e);
         }
+        return processed;
     }
 
     Object unmarshallFile(File file, Class clazz) {

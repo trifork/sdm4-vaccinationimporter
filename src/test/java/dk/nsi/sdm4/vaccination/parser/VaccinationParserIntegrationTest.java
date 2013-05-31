@@ -77,7 +77,7 @@ public class VaccinationParserIntegrationTest
         // 1 folder containing 1 file
         File file = FileUtils.toFile(getClass().getClassLoader().getResource("diseases"));
         
-        parser.process(file);
+        parser.process(file, "");
         
         assertEquals(25, jdbcTemplate.queryForInt("select count(*) from ddv_diseases"));
         
@@ -90,7 +90,7 @@ public class VaccinationParserIntegrationTest
         // 1 folder containing 1 file
         File file = FileUtils.toFile(getClass().getClassLoader().getResource("diseasesVaccines"));
         
-        parser.process(file);
+        parser.process(file, "");
         assertEquals(104, jdbcTemplate.queryForInt("select count(*) from ddv_diseases_vaccines"));
         assertEquals("2013-01-04T19:20:23Z", jdbcTemplate.queryForObject("select ddvModifiedDate from ddv_diseases_vaccines where DiseaseIdentifier = 25 and VaccineIdentifier = 1617170660", String.class));
     }
@@ -100,7 +100,7 @@ public class VaccinationParserIntegrationTest
         // 1 folder containing 1 file
         File file = FileUtils.toFile(getClass().getClassLoader().getResource("dosageoptions"));
         
-        parser.process(file);
+        parser.process(file, "");
         assertEquals(10, jdbcTemplate.queryForInt("select count(*) from ddv_dosageoptions"));
         assertEquals(4, jdbcTemplate.queryForInt("select count(*) from ddv_dosageoptions where DrugIdentifier = 28101565493"));
         assertEquals("1 * 1/4 dosis - barn under 20 kg", jdbcTemplate.queryForObject("select DosageText from ddv_dosageoptions where DrugIdentifier = 28101565493 and dosageoptionIdentifier = 111111", String.class));
@@ -111,7 +111,7 @@ public class VaccinationParserIntegrationTest
         // 1 folder containing 1 file
         File file = FileUtils.toFile(getClass().getClassLoader().getResource("ssidrugs"));
         
-        parser.process(file);
+        parser.process(file, "");
         assertEquals(4, jdbcTemplate.queryForInt("select count(*) from ddv_ssidrugs"));
         assertEquals("Zopiklon Merck NM", jdbcTemplate.queryForObject("select Name from ddv_ssidrugs where drugidentifier = 4", String.class));
     }
@@ -121,7 +121,7 @@ public class VaccinationParserIntegrationTest
         // 1 folder containing 1 file
         File file = FileUtils.toFile(getClass().getClassLoader().getResource("vaccinationplanitems"));
         
-        parser.process(file);
+        parser.process(file, "");
         assertEquals(12, jdbcTemplate.queryForInt("select count(*) from ddv_vaccinationplanitems"));
     }
 
@@ -130,7 +130,7 @@ public class VaccinationParserIntegrationTest
         // 1 folder containing 1 file
         File file = FileUtils.toFile(getClass().getClassLoader().getResource("vaccinationplans"));
         
-        parser.process(file);
+        parser.process(file, "");
         assertEquals(2, jdbcTemplate.queryForInt("select count(*) from ddv_vaccinationplans"));
     }
 
@@ -139,7 +139,7 @@ public class VaccinationParserIntegrationTest
         // 1 folder containing 1 file
         File file = FileUtils.toFile(getClass().getClassLoader().getResource("vaccinesdrugs"));
         
-        parser.process(file);
+        parser.process(file, "");
         assertEquals(38, jdbcTemplate.queryForInt("select count(*) from ddv_vaccinesdrugs"));
     }
 
@@ -148,7 +148,7 @@ public class VaccinationParserIntegrationTest
         // 1 folder containing 1 file
         File file = FileUtils.toFile(getClass().getClassLoader().getResource("vaccines"));
         
-        parser.process(file);
+        parser.process(file, "");
         assertEquals(72, jdbcTemplate.queryForInt("select count(*) from ddv_vaccines"));
     }
 
@@ -157,7 +157,7 @@ public class VaccinationParserIntegrationTest
         // 1 folder containing 1 file
         File file = FileUtils.toFile(getClass().getClassLoader().getResource("data"));
         
-        parser.process(file);
+        parser.process(file, "");
         assertEquals(72, jdbcTemplate.queryForInt("select count(*) from ddv_vaccines"));
         assertEquals(38, jdbcTemplate.queryForInt("select count(*) from ddv_vaccinesdrugs"));
         assertEquals(2, jdbcTemplate.queryForInt("select count(*) from ddv_vaccinationplans"));
