@@ -66,9 +66,9 @@ INSERT IGNORE INTO SKRSColumns (viewMap, isPID, tableColumnName, feedColumnName,
 ((SELECT idSKRSViewMapping FROM SKRSViewMapping WHERE register='ddv' AND datatype='diseases_vaccines' AND version=1), 0, 'ValidTo',                     'ValidTo', 9, 93, 12);
 
 INSERT IGNORE INTO SKRSViewMapping (register, datatype, version, tableName, createdDate) VALUES ('ddv', 'dosageoptions', 1, 'ddv_dosageoptions', NOW());
-((SELECT idSKRSViewMapping FROM SKRSViewMapping WHERE register='ddv' AND datatype='dosageoptions' AND version=1), 0, 'DosageoptionIdentifier', 'DosageoptionIdentifier', 1, -5, NULL),
 INSERT IGNORE INTO SKRSColumns (viewMap, isPID, tableColumnName, feedColumnName, feedPosition, dataType, maxLength) VALUES
 ((SELECT idSKRSViewMapping FROM SKRSViewMapping WHERE register='ddv' AND datatype='dosageoptions' AND version=1), 1, 'PID',                                        NULL, 0, -5, NULL),
+((SELECT idSKRSViewMapping FROM SKRSViewMapping WHERE register='ddv' AND datatype='dosageoptions' AND version=1), 0, 'DosageoptionIdentifier', 'DosageoptionIdentifier', 1, -5, NULL),
 ((SELECT idSKRSViewMapping FROM SKRSViewMapping WHERE register='ddv' AND datatype='dosageoptions' AND version=1), 0, 'VersionID',                           'VersionID', 2, -5, NULL),
 ((SELECT idSKRSViewMapping FROM SKRSViewMapping WHERE register='ddv' AND datatype='dosageoptions' AND version=1), 0, 'DrugIdentifier',                 'DrugIdentifier', 3, -5, NULL),
 ((SELECT idSKRSViewMapping FROM SKRSViewMapping WHERE register='ddv' AND datatype='dosageoptions' AND version=1), 0, 'DrugName',                             'DrugName', 4, 12, NULL),
