@@ -32,25 +32,14 @@ import java.util.List;
 import dk.nsi.sdm4.core.persistence.recordpersister.Record;
 import dk.nsi.sdm4.core.persistence.recordpersister.RecordBuilder;
 import dk.nsi.sdm4.core.persistence.recordpersister.RecordSpecification;
-import dk.nsi.sdm4.vaccination.model.Disease;
-import dk.nsi.sdm4.vaccination.model.DiseaseVaccine;
-import dk.nsi.sdm4.vaccination.model.Diseases;
-import dk.nsi.sdm4.vaccination.model.DiseasesVaccines;
-import dk.nsi.sdm4.vaccination.model.Dosageoption;
-import dk.nsi.sdm4.vaccination.model.Dosageoptions;
-import dk.nsi.sdm4.vaccination.model.SSIDrug;
-import dk.nsi.sdm4.vaccination.model.SSIDrugs;
-import dk.nsi.sdm4.vaccination.model.VaccinationPlan;
-import dk.nsi.sdm4.vaccination.model.VaccinationPlanItem;
-import dk.nsi.sdm4.vaccination.model.VaccinationPlanItems;
-import dk.nsi.sdm4.vaccination.model.VaccinationPlans;
-import dk.nsi.sdm4.vaccination.model.Vaccine;
-import dk.nsi.sdm4.vaccination.model.VaccineDrug;
-import dk.nsi.sdm4.vaccination.model.Vaccines;
-import dk.nsi.sdm4.vaccination.model.VaccinesDrugs;
+import dk.nsi.sdm4.vaccination.model.*;
 
 
 public class RecordBuilderHelper {
+
+    private static void setIdOnRecords(EntityWithId entityWithId, RecordBuilder recordBuilder) {
+        recordBuilder.field("Id", entityWithId.getId());
+    }
 
     public static List<Record> buildDiseaseRecords(Diseases diseases, RecordSpecification spec) {
         
@@ -67,7 +56,7 @@ public class RecordBuilderHelper {
             record.field("ddvModifiedDate", d.getDdvModifiedDate());
             record.field("ddvValidFrom", d.getDdvValidFrom());
             record.field("ddvValidTo", d.getDdvValidTo());
-            
+            setIdOnRecords(d, record);
             records.add(record.build());
         }
         return records;
@@ -86,6 +75,7 @@ public class RecordBuilderHelper {
             record.field("ddvModifiedDate", d.getDdvModifiedDate());
             record.field("ddvValidFrom", d.getDdvValidFrom());
             record.field("ddvValidTo", d.getDdvValidTo());
+            setIdOnRecords(d, record);
             
             records.add(record.build());
         }
@@ -106,6 +96,7 @@ public class RecordBuilderHelper {
             record.field("ddvModifiedDate", d.getDdvModifiedDate());
             record.field("ddvValidFrom", d.getDdvValidFrom());
             record.field("ddvValidTo", d.getDdvValidTo());
+            setIdOnRecords(d, record);
             
             records.add(record.build());
         }
@@ -130,6 +121,7 @@ public class RecordBuilderHelper {
             record.field("ddvModifiedDate", d.getDdvModifiedDate());
             record.field("ddvValidFrom", d.getDdvValidFrom());
             record.field("ddvValidTo", d.getDdvValidTo());
+            setIdOnRecords(d, record);
             
             records.add(record.build());
         }
@@ -157,6 +149,7 @@ public class RecordBuilderHelper {
             record.field("ddvModifiedDate", d.getDdvModifiedDate());
             record.field("ddvValidFrom", d.getDdvValidFrom());
             record.field("ddvValidTo", d.getDdvValidTo());
+            setIdOnRecords(d, record);
             
             records.add(record.build());
         }
@@ -184,6 +177,7 @@ public class RecordBuilderHelper {
             record.field("ddvModifiedDate", d.getDdvModifiedDate());
             record.field("ddvValidFrom", d.getDdvValidFrom());
             record.field("ddvValidTo", d.getDdvValidTo());
+            setIdOnRecords(d, record);
             
             records.add(record.build());
         }
@@ -208,6 +202,7 @@ public class RecordBuilderHelper {
             record.field("ddvModifiedDate", d.getDdvModifiedDate());
             record.field("ddvValidFrom", d.getDdvValidFrom());
             record.field("ddvValidTo", d.getDdvValidTo());
+            setIdOnRecords(d, record);
             
             records.add(record.build());
         }
@@ -227,6 +222,7 @@ public class RecordBuilderHelper {
             record.field("ddvModifiedDate", d.getDdvModifiedDate());
             record.field("ddvValidFrom", d.getDdvValidFrom());
             record.field("ddvValidTo", d.getDdvValidTo());
+            setIdOnRecords(d, record);
             
             records.add(record.build());
         }

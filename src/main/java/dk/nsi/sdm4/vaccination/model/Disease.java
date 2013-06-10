@@ -32,7 +32,7 @@ import javax.xml.bind.annotation.XmlType;
 
 @XmlRootElement
 @XmlType(name="Disease", namespace="")
-public class Disease {
+public class Disease implements EntityWithId {
     long diseaseIdentifier;
     long versionID;
     String name;
@@ -105,6 +105,10 @@ public class Disease {
     }
     public void setDdvValidTo(String ddvValidTo) {
         this.ddvValidTo = ddvValidTo;
+    }
+    @Override
+    public String getId() {
+        return getDiseaseIdentifier()+"-"+getVersionID();
     }
     
 } 

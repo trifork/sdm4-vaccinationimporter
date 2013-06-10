@@ -33,7 +33,7 @@ import javax.xml.bind.annotation.XmlType;
 
 @XmlRootElement
 @XmlType(name="Dosageoption", namespace="")
-public class Dosageoption {
+public class Dosageoption implements EntityWithId {
 
     long dosageoptionIdentifier;
     long versionID;
@@ -44,10 +44,7 @@ public class Dosageoption {
     String ddvModifiedDate;
     String ddvValidFrom;
     String ddvValidTo;
-    
 
-    
-    
     @XmlElement(name="modifiedDate")
     public String getDdvModifiedDate() {
         return ddvModifiedDate;
@@ -104,4 +101,9 @@ public class Dosageoption {
     public void setDosageText(String dosageText) {
         this.dosageText = dosageText;
     }
-} 
+
+    @Override
+    public String getId() {
+        return getDosageoptionIdentifier() + "-" + getVersionID();
+    }
+}

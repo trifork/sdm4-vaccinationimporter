@@ -32,7 +32,7 @@ import javax.xml.bind.annotation.XmlType;
 
 @XmlRootElement
 @XmlType(name="VaccinationPlanItem", namespace="")
-public class VaccinationPlanItem {
+public class VaccinationPlanItem implements EntityWithId {
     String ddvModifiedDate;
     String ddvValidFrom;
     String ddvValidTo;
@@ -155,5 +155,9 @@ public class VaccinationPlanItem {
     public void setPlanVersionID(long planVersionID) {
         this.planVersionID = planVersionID;
     }
-    
-} 
+
+    @Override
+    public String getId() {
+        return getVaccinationPlanItemIdentifier() + "-" + getVersionID();
+    }
+}

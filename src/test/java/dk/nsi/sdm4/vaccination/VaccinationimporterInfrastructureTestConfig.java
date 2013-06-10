@@ -24,36 +24,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package dk.nsi.sdm4.vaccination.config;
+package dk.nsi.sdm4.vaccination;
 
 import dk.nsi.sdm4.core.persistence.recordpersister.RecordPersister;
 import dk.nsi.sdm4.core.persistence.recordpersister.UpdateExistingRecordPersister;
-import org.springframework.context.annotation.Bean;
+import dk.nsi.sdm4.testutils.TestDbConfiguration;
+import org.joda.time.Instant;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
-import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
-
-import dk.nsi.sdm4.core.config.StamdataConfiguration;
-import dk.sdsd.nsp.slalog.api.SLALogConfig;
-import dk.sdsd.nsp.slalog.api.SLALogger;
 
 @Configuration
-@EnableScheduling
-@EnableTransactionManagement
-//The Spring Java Configuration annotations above needs to be on this class, not on the abstract superclass to
-// make Spring stop complaining about weird things
-public class VaccinationimporterInfrastructureConfig extends StamdataConfiguration {
-	@Bean
-	public SLALogger slaLogger() {
-		return new SLALogConfig("Stamdata Vaccination-importer", "vaccinationimporter").getSLALogger();
-	}
+public class VaccinationimporterInfrastructureTestConfig extends TestDbConfiguration {
 
+    @Scope(value="thread", proxyMode=ScopedProxyMode.TARGET_CLASS)
     @Override
-    @Bean
-    @Scope(value="thread", proxyMode= ScopedProxyMode.TARGET_CLASS)
     public RecordPersister recordPersister() {
-        return new UpdateExistingRecordPersister();
+        return new UpdateExistingRecordPersister(Instant.now());
     }
 }

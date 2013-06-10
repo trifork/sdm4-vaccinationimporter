@@ -32,7 +32,7 @@ import javax.xml.bind.annotation.XmlType;
 
 @XmlRootElement
 @XmlType(name="SSIDrug", namespace="")
-public class SSIDrug {
+public class SSIDrug implements EntityWithId {
 
     String ddvModifiedDate;
     String ddvValidFrom;
@@ -135,5 +135,9 @@ public class SSIDrug {
     public void setUsableTo(String usableTo) {
         this.usableTo = usableTo;
     }
-    
-} 
+
+    @Override
+    public String getId() {
+        return getDrugIdentifier() + "-" + getVersionID();
+    }
+}

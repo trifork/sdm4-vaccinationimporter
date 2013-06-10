@@ -110,8 +110,6 @@ public class VaccinationParser implements Parser {
             long processed = 0;
 		    validateDataset(dataSet);
 		    
-		    truncateTables();
-		    
             File[] input = null;
             if(dataSet.isDirectory()) {
                  input = dataSet.listFiles();
@@ -209,17 +207,7 @@ public class VaccinationParser implements Parser {
         }
         return jaxbObject;
     }
-	
 
-    /*
-     * Tables needs to be truncated before each run, because Vaccination has no history support
-     */
-    private void truncateTables() {
-        Collection<RecordSpecification> values = specsForFiles.values();
-        for (RecordSpecification spec : values) {
-            jdbcTemplate.execute("truncate table "+ spec.getTable());
-        }
-    }
 
     @Override
 	public String getHome() {

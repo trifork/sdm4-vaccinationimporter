@@ -26,13 +26,15 @@
  */
 package dk.nsi.sdm4.vaccination.model;
 
+import dk.nsi.sdm4.core.util.MD5Generator;
+
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 @XmlRootElement
 @XmlType(name="VaccineDrug", namespace="")
-public class VaccineDrug {
+public class VaccineDrug implements EntityWithId {
 
     String ddvModifiedDate;
     String ddvValidFrom;
@@ -92,5 +94,10 @@ public class VaccineDrug {
     public void setDrugName(String drugName) {
         this.drugName = drugName;
     }
-    
-} 
+
+    @Override
+    public String getId() {
+        String longId = getVaccineIdentifier() + "-" + getVersionID() + "-" + getDrugIdentifier();
+        return MD5Generator.makeMd5Identifier(longId);
+    }
+}

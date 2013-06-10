@@ -32,7 +32,7 @@ import javax.xml.bind.annotation.XmlType;
 
 @XmlRootElement
 @XmlType(name="Vaccine", namespace="")
-public class Vaccine {
+public class Vaccine implements EntityWithId {
 
     String ddvModifiedDate;
     String ddvValidFrom;
@@ -133,5 +133,9 @@ public class Vaccine {
     public void setSearchBoost(double searchBoost) {
         SearchBoost = searchBoost;
     }
-    
-} 
+
+    @Override
+    public String getId() {
+        return getVaccineIdentifier() + "-" + getVersionID();
+    }
+}
