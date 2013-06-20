@@ -26,6 +26,7 @@
  */
 package dk.nsi.sdm4.vaccination.parser;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,9 +34,15 @@ import dk.nsi.sdm4.core.persistence.recordpersister.Record;
 import dk.nsi.sdm4.core.persistence.recordpersister.RecordBuilder;
 import dk.nsi.sdm4.core.persistence.recordpersister.RecordSpecification;
 import dk.nsi.sdm4.vaccination.model.*;
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormatter;
+import org.joda.time.format.ISODateTimeFormat;
 
 
 public class RecordBuilderHelper {
+
+    // Format of dates: 2010-05-03T00:31:54Z
+    private static final DateTimeFormatter dateTimeFormatter = ISODateTimeFormat.dateTimeNoMillis();
 
     private static void setIdOnRecords(EntityWithId entityWithId, RecordBuilder recordBuilder) {
         recordBuilder.field("Id", entityWithId.getId());
@@ -53,10 +60,11 @@ public class RecordBuilderHelper {
             record.field("name_dk", d.getName_dk());
             record.field("ATCCode", d.getATCCode()); 
             record.field("ATCText", d.getATCText());
-            record.field("ddvModifiedDate", d.getDdvModifiedDate());
-            record.field("ddvValidFrom", d.getDdvValidFrom());
-            record.field("ddvValidTo", d.getDdvValidTo());
+            record.field("ddvModifiedDate", isoStringToDate(d.getDdvModifiedDate()));
+            record.field("ddvValidFrom", isoStringToDate(d.getDdvValidFrom()));
+            record.field("ddvValidTo", isoStringToDate(d.getDdvValidTo()));
             setIdOnRecords(d, record);
+
             records.add(record.build());
         }
         return records;
@@ -71,10 +79,10 @@ public class RecordBuilderHelper {
             record.field("VaccineVersion", d.getVaccineVersion());
             record.field("DiseaseIdentifier", d.getDiseaseIdentifier());
             record.field("DiseaseVersion", d.getDiseaseVersion());
-            
-            record.field("ddvModifiedDate", d.getDdvModifiedDate());
-            record.field("ddvValidFrom", d.getDdvValidFrom());
-            record.field("ddvValidTo", d.getDdvValidTo());
+
+            record.field("ddvModifiedDate", isoStringToDate(d.getDdvModifiedDate()));
+            record.field("ddvValidFrom", isoStringToDate(d.getDdvValidFrom()));
+            record.field("ddvValidTo", isoStringToDate(d.getDdvValidTo()));
             setIdOnRecords(d, record);
             
             records.add(record.build());
@@ -93,9 +101,9 @@ public class RecordBuilderHelper {
             record.field("DrugName", d.getDrugName());
             record.field("DosageText", d.getDosageText());
 
-            record.field("ddvModifiedDate", d.getDdvModifiedDate());
-            record.field("ddvValidFrom", d.getDdvValidFrom());
-            record.field("ddvValidTo", d.getDdvValidTo());
+            record.field("ddvModifiedDate", isoStringToDate(d.getDdvModifiedDate()));
+            record.field("ddvValidFrom", isoStringToDate(d.getDdvValidFrom()));
+            record.field("ddvValidTo", isoStringToDate(d.getDdvValidTo()));
             setIdOnRecords(d, record);
             
             records.add(record.build());
@@ -115,12 +123,12 @@ public class RecordBuilderHelper {
             record.field("ATCCode", d.getaTCCode());
             record.field("ATCText", d.getaTCText());
             record.field("StyrkeTekst", d.getStyrkeTekst());
-            record.field("UsableFrom", d.getUsableFrom());
-            record.field("UsableTo", d.getUsableTo());
+            record.field("UsableFrom", isoStringToDate(d.getUsableFrom()));
+            record.field("UsableTo", isoStringToDate(d.getUsableTo()));
 
-            record.field("ddvModifiedDate", d.getDdvModifiedDate());
-            record.field("ddvValidFrom", d.getDdvValidFrom());
-            record.field("ddvValidTo", d.getDdvValidTo());
+            record.field("ddvModifiedDate", isoStringToDate(d.getDdvModifiedDate()));
+            record.field("ddvValidFrom", isoStringToDate(d.getDdvValidFrom()));
+            record.field("ddvValidTo", isoStringToDate(d.getDdvValidTo()));
             setIdOnRecords(d, record);
             
             records.add(record.build());
@@ -146,9 +154,9 @@ public class RecordBuilderHelper {
             record.field("VaccinationPlanIdentifier", d.getVaccinationPlanIdentifier());
             record.field("PlanVersionID", d.getPlanVersionID());
 
-            record.field("ddvModifiedDate", d.getDdvModifiedDate());
-            record.field("ddvValidFrom", d.getDdvValidFrom());
-            record.field("ddvValidTo", d.getDdvValidTo());
+            record.field("ddvModifiedDate", isoStringToDate(d.getDdvModifiedDate()));
+            record.field("ddvValidFrom", isoStringToDate(d.getDdvValidFrom()));
+            record.field("ddvValidTo", isoStringToDate(d.getDdvValidTo()));
             setIdOnRecords(d, record);
             
             records.add(record.build());
@@ -165,18 +173,18 @@ public class RecordBuilderHelper {
             record.field("VersionID", d.getVersionID());
             record.field("Active", d.getActive());
             record.field("Name", d.getName());
-            record.field("UsableFrom", d.getUsableFrom());
-            record.field("UsableTo", d.getUsableTo());
+            record.field("UsableFrom", isoStringToDate(d.getUsableFrom()));
+            record.field("UsableTo", isoStringToDate(d.getUsableTo()));
             record.field("AllocationMethod", d.getAllocationMethod());
             record.field("Sex", d.getSex());
-            record.field("BirthCohorteFrom", d.getBirthCohorteFrom());
-            record.field("BirthCohorteTo", d.getBirthCohorteTo());
+            record.field("BirthCohorteFrom", isoStringToDate(d.getBirthCohorteFrom()));
+            record.field("BirthCohorteTo", isoStringToDate(d.getBirthCohorteTo()));
             record.field("AgeIntervalFrom", d.getAgeIntervalFrom());
             record.field("AgeIntervalTo", d.getAgeIntervalTo());
             
-            record.field("ddvModifiedDate", d.getDdvModifiedDate());
-            record.field("ddvValidFrom", d.getDdvValidFrom());
-            record.field("ddvValidTo", d.getDdvValidTo());
+            record.field("ddvModifiedDate", isoStringToDate(d.getDdvModifiedDate()));
+            record.field("ddvValidFrom", isoStringToDate(d.getDdvValidFrom()));
+            record.field("ddvValidTo", isoStringToDate(d.getDdvValidTo()));
             setIdOnRecords(d, record);
             
             records.add(record.build());
@@ -199,9 +207,9 @@ public class RecordBuilderHelper {
             record.field("Keywords", d.getKeywords());
             record.field("SearchBoost", d.getSearchBoost());
 
-            record.field("ddvModifiedDate", d.getDdvModifiedDate());
-            record.field("ddvValidFrom", d.getDdvValidFrom());
-            record.field("ddvValidTo", d.getDdvValidTo());
+            record.field("ddvModifiedDate", isoStringToDate(d.getDdvModifiedDate()));
+            record.field("ddvValidFrom", isoStringToDate(d.getDdvValidFrom()));
+            record.field("ddvValidTo", isoStringToDate(d.getDdvValidTo()));
             setIdOnRecords(d, record);
             
             records.add(record.build());
@@ -219,14 +227,23 @@ public class RecordBuilderHelper {
             record.field("DrugIdentifier", d.getDrugIdentifier());
             record.field("DrugName", d.getDrugName());
 
-            record.field("ddvModifiedDate", d.getDdvModifiedDate());
-            record.field("ddvValidFrom", d.getDdvValidFrom());
-            record.field("ddvValidTo", d.getDdvValidTo());
+            record.field("ddvModifiedDate", isoStringToDate(d.getDdvModifiedDate()));
+            record.field("ddvValidFrom", isoStringToDate(d.getDdvValidFrom()));
+            record.field("ddvValidTo", isoStringToDate(d.getDdvValidTo()));
             setIdOnRecords(d, record);
             
             records.add(record.build());
         }
         return records;
+    }
+
+    private static java.sql.Date isoStringToDate(String dateString) {
+        if (dateString != null && dateString.length() > 0) {
+            DateTime dateTime = dateTimeFormatter.parseDateTime(dateString);
+            long millis = dateTime.getMillis();
+            return new java.sql.Date(millis);
+        }
+        return null;
     }
 
 }

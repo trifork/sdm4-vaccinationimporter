@@ -31,9 +31,12 @@ import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
 
 import dk.nsi.sdm4.vaccination.VaccinationimporterInfrastructureTestConfig;
 import org.apache.commons.io.FileUtils;
+import org.joda.time.format.DateTimeFormatter;
+import org.joda.time.format.ISODateTimeFormat;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +55,8 @@ import dk.nsi.sdm4.vaccination.model.Diseases;
         VaccinationimporterInfrastructureTestConfig.class})
 public class VaccinationParserIntegrationTest
 {
+
+    private static final DateTimeFormatter dateTimeFormatter = ISODateTimeFormat.dateTimeNoMillis();
 
 	@Autowired
 	private VaccinationParser parser;
@@ -84,7 +89,9 @@ public class VaccinationParserIntegrationTest
         assertEquals(25, jdbcTemplate.queryForInt("select count(*) from ddv_diseases"));
         
         assertEquals("Brucellose vacciner", jdbcTemplate.queryForObject("select ATCText from ddv_diseases where DiseaseIdentifier = 2", String.class));
-        assertEquals("2002-08-31T22:00:00Z", jdbcTemplate.queryForObject("select ddvValidFrom from ddv_diseases where DiseaseIdentifier = 2", String.class));
+        Date ddvValidFrom = jdbcTemplate.queryForObject("select ddvValidFrom from ddv_diseases where DiseaseIdentifier = 2", Date.class);
+        Date expectedDdvValidFrom = dateTimeFormatter.parseDateTime("2002-08-31T22:00:00Z").toDate();
+        assertEquals(ddvValidFrom.getTime(), expectedDdvValidFrom.getTime());
     }
 
     @Test
@@ -94,7 +101,11 @@ public class VaccinationParserIntegrationTest
         
         parser.process(file, "");
         assertEquals(104, jdbcTemplate.queryForInt("select count(*) from ddv_diseases_vaccines"));
-        assertEquals("2013-01-04T19:20:23Z", jdbcTemplate.queryForObject("select ddvModifiedDate from ddv_diseases_vaccines where DiseaseIdentifier = 25 and VaccineIdentifier = 1617170660", String.class));
+
+        Date ddvModifiedDate = jdbcTemplate.queryForObject("select ddvModifiedDate from ddv_diseases_vaccines where DiseaseIdentifier = 25 and VaccineIdentifier = 1617170660", Date.class);
+        // 2002-08-31T22:00:00Z
+        Date expectedDdvModifiedDate = dateTimeFormatter.parseDateTime("2013-01-04T19:20:23Z").toDate();
+        assertEquals(ddvModifiedDate.getTime(), expectedDdvModifiedDate.getTime());
     }
     
     @Test
